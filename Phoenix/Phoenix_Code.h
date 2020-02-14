@@ -551,7 +551,8 @@ PHOENIXGAIT APG[] = {
     {DEFAULT_GAIT_SPEED, 12, 3, 2, 2, 8, 3, {5, 10, 3, 11, 4, 9} GAITNAME(s_szGN3) },      //Triple Tripod 12 step
     {DEFAULT_GAIT_SPEED, 16, 5, 3, 4, 10, 1, {6, 13, 4, 14, 5, 12} GAITNAME(s_szGN4)},    // Triple Tripod 16 steps, use 5 lifted positions
     {DEFAULT_SLOW_GAIT, 24, 3, 2, 2, 20, 3, {13, 17, 21, 1, 5, 9} GAITNAME(s_szGN5)},     //Wave 24 steps
-    {DEFAULT_GAIT_SPEED, 6, 2, 1, 2, 4, 1, {1, 4, 1, 4, 1, 4} GAITNAME(s_szGN6)}          //Tripod 6 steps
+    {DEFAULT_GAIT_SPEED, 6, 2, 1, 2, 4, 1, {1, 4, 1, 4, 1, 4} GAITNAME(s_szGN6)},          //Tripod 6 steps
+    {DEFAULT_SLOW_GAIT, 6, 2, 1, 2, 4, 1, {1, 4, 1, 4, 1, 4} GAITNAME(s_szGN7)}
 };    
 
 #else
