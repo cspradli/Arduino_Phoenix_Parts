@@ -1086,6 +1086,13 @@ boolean CheckVoltage() {
 #endif	
   return g_fLowVoltageShutdown;
 }
+//--------------------------------------------------------------------
+//[TERRAIN GAIT SERVO CHECK]
+void CheckServos(void)
+{
+  
+}
+
 
 //--------------------------------------------------------------------
 //[SINGLE LEG CONTROL]
