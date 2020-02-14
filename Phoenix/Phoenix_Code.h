@@ -544,7 +544,16 @@ extern "C" {
   const char s_szGN7[] PROGMEM = "Tripod_Terrain 6";
 };  
 #endif
-
+/**
+typedef struct _PhoenixGait {
+	short	 		NomGaitSpeed;		//Nominal speed of the gait
+	byte            StepsInGait;         //Number of steps in gait
+	byte            NrLiftedPos;         //Number of positions that a single leg is lifted [1-3]
+	byte            FrontDownPos;        //Where the leg should be put down to ground
+	byte            LiftDivFactor;       //Normaly: 2, when NrLiftedPos=5: 4
+	byte            TLDivFactor;         //Number of steps that a leg is on the floor while walking
+	byte	        HalfLiftHeight;      // How high to lift at halfway up.
+**/
 PHOENIXGAIT APG[] = { 
     {DEFAULT_SLOW_GAIT, 12, 3, 2, 2, 8, 3, {7, 11, 3, 1, 5, 9} GAITNAME(s_szGN1)},        // Ripple 12
     {DEFAULT_SLOW_GAIT, 8, 3, 2, 2, 4, 3, {1, 5, 1, 5, 1, 5} GAITNAME(s_szGN2)},           //Tripod 8 steps
@@ -941,20 +950,14 @@ void loop(void)
 
   } 
   else {
-    //Turn the bot off - May need to add ajust here...
-    if (g_InControlState.fPrev_RobotOn || (AllDown= 0)) {
-      ServoMoveTime = 600;
-      StartUpdateServos();
-      g_ServoDriver.CommitServoDriver(ServoMoveTime);
-      MSound(3, 100, 2500, 80, 2250, 60, 2000);
-#ifdef USEXBEE            
-      XBeePlaySounds(3, 100, 2500, 80, 2250, 60, 2000);
-#endif    
-      lTimeWaitEnd = millis() + 600;    // setup to process background stuff while we wait...
-      do {
-        // Wait the appropriate time, call any background process while waiting...
-        DoBackgroundProcess();
-      } 
+Pull requests 0
+Actions
+Projects 0
+Wiki
+Security
+Insights
+Settings
+
       while (millis() < lTimeWaitEnd);
       //delay(600);
     } 
