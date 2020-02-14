@@ -1148,7 +1148,7 @@ void SingleLegControl(void)
 #endif
 }
 
-
+//TODO - 0 - Check to make sure we are getting all SEVEN gaits
 void GaitSelect(void)
 {
   //Gait selector
