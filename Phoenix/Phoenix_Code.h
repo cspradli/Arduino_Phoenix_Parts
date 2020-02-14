@@ -541,6 +541,7 @@ extern "C" {
   const char s_szGN4[] PROGMEM = "Tripple 16";
   const char s_szGN5[] PROGMEM = "Wave 24";
   const char s_szGN6[] PROGMEM = "Tripod 6";
+  const char s_szGN7[] PROGMEM = "Tripod_Terrain 6";
 };  
 #endif
 
