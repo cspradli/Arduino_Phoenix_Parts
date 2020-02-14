@@ -1193,6 +1193,8 @@ void GaitSelect(void)
 
 }    
 
+
+//TODO - 1 - Create a new GaitSeq which handles the microswitches and max and min depth and extensions
 //--------------------------------------------------------------------
 //[GAIT Sequence]
 void GaitSeq(void)
