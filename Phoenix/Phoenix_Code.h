@@ -1258,9 +1258,9 @@ void GaitSeq(void)
   {
     //debug through sound!
     //MSound(3, 60, 2000, 80, 2250, 100, 2500);
-//#ifdef USEXBEE
-//    XBeePlaySounds(3, 60, 2000, 80, 2250, 100, 2500);
-//#endif
+    //#ifdef USEXBEE
+    //  XBeePlaySounds(3, 60, 2000, 80, 2250, 100, 2500);
+    //#endif
 
     //Calculate Gait sequence / Check for touch, max extension
     for (LegIndex = 0; LegIndex < CNT_LEGS; LegIndex++)
@@ -1268,12 +1268,12 @@ void GaitSeq(void)
       Gait_Terrain(LegIndex);
     } // next leg
   }
-
-  //Calculate Gait sequence
-  for (LegIndex = 0; LegIndex < CNT_LEGS; LegIndex++)
-  { // for all legs
-    Gait(LegIndex);
-  } // next leg
+//
+//  //Calculate Gait sequence
+//  for (LegIndex = 0; LegIndex < CNT_LEGS; LegIndex++)
+//  { // for all legs
+//    Gait(LegIndex);
+//  } // next leg
 
   //Advance to the next step
   g_InControlState.GaitStep++;
