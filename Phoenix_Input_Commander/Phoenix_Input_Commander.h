@@ -263,6 +263,17 @@ void CommanderInputController::AllowControllerInterrupts(boolean fAllow)
   // We don't need to do anything...
 }
 
+
+//==============================================================================
+//
+//
+//
+//==============================================================================
+//void CommanderInputController::GetMicroRead(void)
+//{
+  // TODO fill this in
+//}
+
 //==============================================================================
 // This is The main code to input function to read inputs from the Commander and then
 //process any commands.
