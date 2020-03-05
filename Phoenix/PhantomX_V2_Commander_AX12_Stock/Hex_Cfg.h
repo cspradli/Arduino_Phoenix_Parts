@@ -31,7 +31,9 @@
 #if defined(UBRR2H)
 #define DBGSerial         Serial
 #endif
-#endif 
+#endif
+
+
 
 // Define other optional compnents to be included or not...
 //#define PHANTOMX_V2     // Some code may depend on it being a V2 PhantomX
@@ -97,6 +99,24 @@
 #define USER 0                        // defaults to 13 but Arbotix on 0...
 #endif
 
+
+//CS: MAKE SURE TO PUT ALL PINS IN
+#if defined(__MK20DX256__)
+#define LEG1
+#define LEG2
+#define LEG3
+#define LEG4
+#define LEG5
+#define LEG6
+#else
+#define LEG1
+#define LEG2
+#define LEG3
+#define LEG4
+#define LEG5
+#define LEG6
+#endif
+
 // Define Analog pin and minimum voltage that we will allow the servos to run
 #if defined(__MK20DX256__)
 // Our Teensy board
@@ -151,6 +171,8 @@
 #define cLFTibiaPin     5   //Front Left leg Knee
 
 
+
+//CS Note: These are the angles we need to check for
 //--------------------------------------------------------------------
 //[MIN/MAX ANGLES] - Start off assume same as Phoenix...
 #define cRRCoxaMin1    -750
