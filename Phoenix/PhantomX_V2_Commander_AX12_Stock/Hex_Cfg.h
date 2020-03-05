@@ -102,19 +102,23 @@
 
 //CS: MAKE SURE TO PUT ALL PINS IN
 #if defined(__MK20DX256__)
-#define LEG1
-#define LEG2
-#define LEG3
-#define LEG4
-#define LEG5
-#define LEG6
+#define LEG_PIN     1
+#define LEG_PIN1    0
+#define LEG_PIN2    2
+#define LEG_PIN3    3
+#define LEG_PIN4    4
+#define LEG_PIN5    5
+#define LEG_PIN6    7
+extern const int LEG_PINS[] = {LEG_PIN1, LEG_PIN2, LEG_PIN3, LEG_PIN4, LEG_PIN5, LEG_PIN6};
 #else
-#define LEG1
-#define LEG2
-#define LEG3
-#define LEG4
-#define LEG5
-#define LEG6
+#define LEG_PIN     1
+#define LEG_PIN1    0
+#define LEG_PIN2    2
+#define LEG_PIN3    3
+#define LEG_PIN4    4
+#define LEG_PIN5    5
+#define LEG_PIN6    7
+extern const int LEG_PINS[] = {LEG_PIN1, LEG_PIN2, LEG_PIN3, LEG_PIN4, LEG_PIN5, LEG_PIN6};
 #endif
 
 // Define Analog pin and minimum voltage that we will allow the servos to run

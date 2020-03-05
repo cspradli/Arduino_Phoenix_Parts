@@ -718,6 +718,7 @@ void loop(void)
   }
   WriteOutputs(); // Write Outputs
 
+//CHECKS FOR UPSIDE DOWN (DONT NEED RN)
 #ifdef IsRobotUpsideDown
   if (!fWalking)
   {                                         // dont do this while walking
@@ -736,7 +737,7 @@ void loop(void)
     }
   }
   //  DBGSerial.println(analogRead(0), DEC);
-#endif
+#endif //STILL DONT NEED
 #ifdef OPT_WALK_UPSIDE_DOWN
   if (g_fRobotUpsideDown)
   {
@@ -754,11 +755,11 @@ void loop(void)
     return; // go back to process the next message
 #endif
 
-  //Single leg control
-  SingleLegControl();
-  DoBackgroundProcess();
+  //Single leg control 
+  SingleLegControl(); //Why single leg??
+  DoBackgroundProcess(); 
 
-  //Gait
+  //Gait IMPORTANT
   GaitSeq();
 
   DoBackgroundProcess();
@@ -1257,14 +1258,15 @@ void GaitSeq(void)
   else
   {
     //debug through sound!
-    //MSound(3, 60, 2000, 80, 2250, 100, 2500);
-    //#ifdef USEXBEE
-    //  XBeePlaySounds(3, 60, 2000, 80, 2250, 100, 2500);
-    //#endif
+    MSound(3, 60, 2000, 80, 2250, 100, 2500);
+    #ifdef USEXBEE
+      XBeePlaySounds(3, 60, 2000, 80, 2250, 100, 2500);
+    #endif
 
     //Calculate Gait sequence / Check for touch, max extension
     for (LegIndex = 0; LegIndex < CNT_LEGS; LegIndex++)
     { // for all legs
+      //WHILE LOOP HERE?
       Gait_Terrain(LegIndex);
     } // next leg
   }
@@ -1446,6 +1448,7 @@ void Gait_Terrain(byte GaitCurrentLegNr)
   // CS Note: This seems to be the place where we need to incorporate the maxlength/maxangle/switch thing
   else if ((LegStep == g_InControlState.gaitCur.FrontDownPos || LegStep == -(g_InControlState.gaitCur.StepsInGait - g_InControlState.gaitCur.FrontDownPos)) && GaitPosY[GaitCurrentLegNr] < 0)
   {
+    //CHECK FOR MAX OR PIN AT TRUE
     GaitPosX[GaitCurrentLegNr] = g_InControlState.TravelLength.x / 2;
     GaitPosZ[GaitCurrentLegNr] = g_InControlState.TravelLength.z / 2;
     GaitRotY[GaitCurrentLegNr] = g_InControlState.TravelLength.y / 2;
@@ -2001,6 +2004,8 @@ void LegIK(short IKFeetPosX, short IKFeetPosY, short IKFeetPosZ, byte LegIKLegNr
       DBGSerial.println();
   }
 #endif
+
+//DBGSerial.print(CoxaAngle1[LegIKLegNr], DEC);
 }
 
 //--------------------------------------------------------------------
@@ -2255,6 +2260,14 @@ void AdjustLegPositionsToBodyHeight()
 #endif // CNT_HEX_INITS
 }
 
+//==============================================================================
+//    LegPins - Attempt to connect and use the leg micro-switches.
+//==============================================================================
+#ifdef LEG_PIN
+for(int i=0; i<6; i++){
+  pinMode(LEG_PINS[i], INPUT);
+}
+#endif
 // BUGBUG:: Move to some library...
 //==============================================================================
 //    SoundNoTimer - Quick and dirty tone function to try to output a frequency
