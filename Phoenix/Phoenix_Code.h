@@ -844,7 +844,7 @@ void loop(void)
            GaitRotY[LegIndex], LegIndex);
     LegIK(LegPosX[LegIndex] + g_InControlState.BodyPos.x - BodyFKPosX + GaitPosX[LegIndex] - TotalTransX,
           LegPosY[LegIndex] + g_InControlState.BodyPos.y - BodyFKPosY + GaitPosY[LegIndex] - TotalTransY,
-          LegPosZ[LegIndex] + g_InControlState.BodyPos.z - BodyFKPosZ + GaitPosZ[LegIndex] - TotalTransZ, LegIndex);
+          LegPosZ[LegIndex] + g_InControlState.BodyPos.z - BodyFKPosZ + GaitPosZ[LegIndex] - TotalTransZ, LegIndex); //CS: Is this what we need to change?
   }
 #ifdef OPT_WALK_UPSIDE_DOWN
   if (g_fRobotUpsideDown)
@@ -1449,10 +1449,23 @@ void Gait_Terrain(byte GaitCurrentLegNr)
   else if ((LegStep == g_InControlState.gaitCur.FrontDownPos || LegStep == -(g_InControlState.gaitCur.StepsInGait - g_InControlState.gaitCur.FrontDownPos)) && GaitPosY[GaitCurrentLegNr] < 0)
   {
     //CHECK FOR MAX OR PIN AT TRUE
+    MSound(3, 60, 1500, 100, 1000, 100, 2500);
+    #ifdef USEXBEE
+      XBeePlaySounds(3, 60, 2000, 80, 2250, 100, 2500);
+    #endif
+    #ifdef LEG_PIN
+    if((digitalRead(LEG_PINS[GaitCurrentLegNr])) == HIGH || GaitPosY[GaitCurrentLegNr] < -1){
+          GaitPosX[GaitCurrentLegNr] = g_InControlState.TravelLength.x / 2;
+          GaitPosZ[GaitCurrentLegNr] = g_InControlState.TravelLength.z / 2;
+          GaitRotY[GaitCurrentLegNr] = g_InControlState.TravelLength.y / 2;
+          GaitPosY[GaitCurrentLegNr] = 0;
+    }
+    #else
     GaitPosX[GaitCurrentLegNr] = g_InControlState.TravelLength.x / 2;
     GaitPosZ[GaitCurrentLegNr] = g_InControlState.TravelLength.z / 2;
     GaitRotY[GaitCurrentLegNr] = g_InControlState.TravelLength.y / 2;
     GaitPosY[GaitCurrentLegNr] = 0;
+    #endif
   }
 
   //Move body forward
@@ -2268,6 +2281,7 @@ for(int i=0; i<6; i++){
   pinMode(LEG_PINS[i], INPUT);
 }
 #endif
+
 // BUGBUG:: Move to some library...
 //==============================================================================
 //    SoundNoTimer - Quick and dirty tone function to try to output a frequency
